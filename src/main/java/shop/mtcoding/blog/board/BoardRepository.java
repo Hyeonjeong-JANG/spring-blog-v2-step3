@@ -6,12 +6,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import shop.mtcoding.blog.user.User;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Repository
 public class BoardRepository {
     private final EntityManager em;
+
+
+
+
 
     public List<Board> findAll() {
         Query query = em.createQuery("select b from Board b order by b.id desc", Board.class);
