@@ -20,6 +20,22 @@ public class BoardRepositoryTest {
     private EntityManager em;
 
     @Test
+    public void findAllV2_test() {
+        // given
+
+        // when
+        List<Board> boardList = boardRepository.findAllV2();
+        System.out.println("findAllV2_test_query↑, findAllV2_test_print↓");
+        boardList.forEach(board -> {
+            System.out.println(board);
+        });
+
+        // then
+
+
+    }
+
+    @Test
     public void findAll_test() {
         // given
 
