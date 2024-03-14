@@ -42,7 +42,8 @@ public class BoardController {
 
     @GetMapping("/")
     public String index(HttpServletRequest request) {
-
+        List<Board> boardList = boardRepository.findAll();
+        request.setAttribute("boardList", boardList);
         return "index";
     }
 
