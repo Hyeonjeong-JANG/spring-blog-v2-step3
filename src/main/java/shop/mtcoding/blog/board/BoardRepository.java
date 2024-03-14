@@ -3,6 +3,7 @@ package shop.mtcoding.blog.board;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Id;
 import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import shop.mtcoding.blog.user.User;
@@ -15,6 +16,12 @@ import java.util.Set;
 @Repository
 public class BoardRepository {
     private final EntityManager em;
+
+
+    @Transactional
+    public void save(Board board) {
+        em.persist(board);
+    }
 
     public List<Board> findAllV2() {
         Query q1 = em.createQuery("select b from Board b order by b.id desc", Board.class);
