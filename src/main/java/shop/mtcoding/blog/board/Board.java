@@ -23,6 +23,7 @@ public class Board {
     //    @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
     @CreationTimestamp // pc -> db (날짜주입)
     private Timestamp createdAt;
 

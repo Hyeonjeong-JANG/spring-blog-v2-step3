@@ -15,6 +15,12 @@ import java.util.List;
 public class BoardController {
     private final BoardRepository boardRepository;
 
+    @GetMapping("/")
+    public String index(HttpServletRequest request) {
+
+        return "index";
+    }
+
     @PostMapping("/board/{id}/update")
     public String update(@PathVariable Integer id) {
 
@@ -37,12 +43,6 @@ public class BoardController {
     public String save() {
 
         return "redirect:/";
-    }
-
-    @GetMapping("/")
-    public String index(HttpServletRequest request) {
-
-        return "index";
     }
 
     @GetMapping("/board/save-form")

@@ -29,4 +29,5 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        default_batch_fetch_size: 10 # lazy 하게 땡길 때 셀렉트가 여러 번이 되게 하는 것이 아닌 인쿼리를 생성해준다. 
     defer-datasource-initialization: true
