@@ -1,12 +1,14 @@
 package shop.mtcoding.blog.board;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import shop.mtcoding.blog.user.User;
 
 import java.util.List;
 
@@ -14,10 +16,12 @@ import java.util.List;
 @Controller
 public class BoardController {
     private final BoardRepository boardRepository;
+    private final HttpSession session;
 
     @GetMapping("/")
     public String index(HttpServletRequest request) {
         List<Board> boardList = boardRepository.findAll();
+        System.out.println(boardList);
         request.setAttribute("boardList", boardList);
         return "index";
     }
@@ -41,8 +45,9 @@ public class BoardController {
     }
 
     @PostMapping("/board/save")
-    public String save() {
-
+    public String save(BoardRequest.SaveDTO reqDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        boardRepository.save(reqDTO.toEntity(sessionUser)); // toEntity에 세션을 넣어준다는 말이 이 말이다. toEntity는 insert할 때만 만든다.
         return "redirect:/";
     }
 
