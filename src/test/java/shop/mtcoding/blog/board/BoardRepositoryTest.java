@@ -2,6 +2,7 @@ package shop.mtcoding.blog.board;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -19,6 +20,18 @@ public class BoardRepositoryTest {
     private BoardRepository boardRepository;
     private EntityManager em;
 
+    @Test
+    public void deleteById_test() {
+        // given
+        int id = 1;
+
+        // when
+        boardRepository.deleteById(id);
+
+        // then
+        System.out.println("deleteById_test: " + boardRepository.findAll().size());
+
+    }
 
 //    // for문을 돌면서 동적 쿼리를 만들어 내는 방법
 //    public List<Board> findAllV3() {
